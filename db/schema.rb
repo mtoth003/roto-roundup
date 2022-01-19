@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_14_031935) do
+ActiveRecord::Schema.define(version: 2022_01_17_160925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_031935) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin", default: false
   end
 
   create_table "websites", force: :cascade do |t|
@@ -58,6 +59,10 @@ ActiveRecord::Schema.define(version: 2022_01_14_031935) do
     t.boolean "free_content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "football"
+    t.boolean "baseball"
+    t.boolean "basketball"
+    t.boolean "hockey"
   end
 
   add_foreign_key "forum_posts", "users"

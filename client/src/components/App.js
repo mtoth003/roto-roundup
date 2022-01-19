@@ -9,7 +9,7 @@ function App() {
   const [websites, setWebsites] = useState([])
 
   useEffect(() => {
-    fetch("/me", {
+    fetch("api/me", {
       credentials: "include",
     }).then((res) => {
       if (res.ok) {
@@ -24,7 +24,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("/websites")
+    fetch("api/websites")
       .then((resp) => resp.json())
       .then(data => setWebsites(data));
   }, []);

@@ -43,7 +43,7 @@ function ReviewContainer({id, currentUser}) {
     }
 
     useEffect(() => {
-      fetch(`/reviews/websites/${id}`)
+      fetch(`api/reviews/websites/${id}`)
       .then(r => r.json())
       .then(data => setReviews(data))
     }, [])
@@ -52,9 +52,9 @@ function ReviewContainer({id, currentUser}) {
       const updatedReviews = reviews.filter((review) => review.id !== reviewToDeleteId)
       setReviews(updatedReviews)
     }
-
+    console.log(reviews)
     const displayReviews = reviews.map((review) => {
-      console.log(reviews)
+      
       return(
         <Review
           key={review.id}

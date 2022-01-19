@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-
+  namespace :api do
+    resources :websites
+    resources :forum_posts
+    resources :users
+    resources :reviews
+    
     get 'sessions/create'
     get 'sessions/destroy'
     get '/me', to: 'users#show'
@@ -8,11 +13,10 @@ Rails.application.routes.draw do
     delete '/logout', to: 'sessions#destroy'
     get '/reviews/websites/:id', to: 'reviews#website_show'
     get '/reviews/users/:id', to: 'reviews#user_show'
+   
+  end
+  
 
-    resources :websites
-    resources :forum_posts
-    resources :reviews
-    resources :users
 
   get '*path', to: 'fallback#index', constraints: ->(req) { !req.xhr? && req.format.html? }
 end

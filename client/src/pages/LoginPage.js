@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 function LoginPage({setCurrentUser}) {
   const [loginData, setLoginData] = useState({
     username: "",
-    password: ""
+    password: "",
   })
 
   const [errors, setErrors] = useState([])
@@ -18,7 +18,7 @@ function LoginPage({setCurrentUser}) {
       body: JSON.stringify(loginData)
     }
     e.preventDefault();
-    fetch("/login", configObg).then((r) => {
+    fetch("api/login", configObg).then((r) => {
       if(r.ok){
         r.json().then((user) => {
           setCurrentUser(user)

@@ -2,7 +2,7 @@ import {useEffect} from 'react'
 
 function Forum() {
   useEffect(() => {
-    fetch("/forum_posts")
+    fetch("api/forum_posts")
       .then((r) => r.json())
       .then((data) => console.log(data));
   }, []);

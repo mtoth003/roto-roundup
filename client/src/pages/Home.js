@@ -3,6 +3,7 @@ import {useState} from 'react'
 import WebsiteCard from '../components/WebsiteCard'
 import {Routes, Route} from 'react-router-dom'
 import NavBar from '../components/NavBar'
+import Forum from './Forum'
 
 function Home({websites, setCurrentUser, currentUser}) {
   const [selectedWebsite, setSelectedWebsite] = useState(null)
@@ -38,6 +39,7 @@ function Home({websites, setCurrentUser, currentUser}) {
       <Routes>
         <Route path="/" element={websiteElements}/>
         <Route path="/websites/:id" element={selectedWebsite}/>
+        <Route path="/forum_posts" element={<Forum/>}/>
       </Routes>
     </div>
   )

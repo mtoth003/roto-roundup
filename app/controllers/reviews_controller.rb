@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-  skip_before_action :authenticate_user, only: [:website_show]
+  skip_before_action :authorize, only: [:website_show]
 
   def user_show
     reviews = Review.find_by(user_id:params[:id])
@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    review = Review.find(parmas[:id])
+    review = Review.find(params[:id])
     if review.user_id == @current_user.id
       review.update!(review_params)
       render json: review
@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    review = Review.find(parmas[:id])
+    review = Review.find(params[:id])
     if review.user_id == @current_user.id
       review.destroy
       head :no_content

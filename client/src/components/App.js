@@ -1,7 +1,6 @@
 import {BrowserRouter as Router} from 'react-router-dom'
 import {useEffect, useState} from "react"
 import Home from "../pages/Home";
-import NavBar from './NavBar';
 import LoggedOutLanding from '../pages/LoggedOutLanding';
 
 function App() {

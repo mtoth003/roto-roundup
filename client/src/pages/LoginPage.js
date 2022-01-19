@@ -7,6 +7,8 @@ function LoginPage({setCurrentUser}) {
     password: ""
   })
 
+  const [errors, setErrors] = useState([])
+
   const handleSubmit = (e) => {
     const configObg = {
       method: "POST",
@@ -22,8 +24,8 @@ function LoginPage({setCurrentUser}) {
           setCurrentUser(user)
         })
       } else {
-        r.json().then((errors) => {
-          console.log(errors)
+        r.json().then((err) => {
+          setErrors(err.errors)
         })
       }
     })

@@ -3,4 +3,8 @@ class ForumPost < ApplicationRecord
 
   validates :title, presence: :true
   validates :content, presence: :true
+
+  def username
+    self.user.username
+  end
 end

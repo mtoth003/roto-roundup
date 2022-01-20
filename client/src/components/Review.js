@@ -27,7 +27,7 @@ function Review({user, comment, rating, id, handleDeleteReview, setReviews, revi
       body: JSON.stringify(updateReviewFormData)
     };
 
-    fetch(`api/reviews/${id}`, configObj).then((r) => {
+    fetch(`/reviews/${id}`, configObj).then((r) => {
       if(r.ok){
         r.json().then((review) => {
           const updatedReviews = reviews.map((rev) => {
@@ -53,7 +53,7 @@ function Review({user, comment, rating, id, handleDeleteReview, setReviews, revi
   }
 
   const handleDelete = () => {
-    fetch(`api/reviews/${id}`, {
+    fetch(`/reviews/${id}`, {
       method: "DELETE"
     }).then(r => {
       if(r.ok){

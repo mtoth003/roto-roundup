@@ -7,9 +7,10 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [authenticated, setAuthenticated] = useState(false);
   const [websites, setWebsites] = useState([])
+  const [forumPosts, setForumPosts] = useState([])
 
   useEffect(() => {
-    fetch("api/me", {
+    fetch("/me", {
       credentials: "include",
     }).then((res) => {
       if (res.ok) {
@@ -24,10 +25,16 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch("api/websites")
+    fetch("/websites")
       .then((resp) => resp.json())
       .then(data => setWebsites(data));
   }, []);
+
+  useEffect(() => {
+    fetch("/forum_posts")
+      .then((res) => res.json())
+      .then(setForumPosts)
+  }, [])
 
   if(!authenticated){
     return <div></div>
@@ -41,6 +48,7 @@ function App() {
               setCurrentUser={setCurrentUser}
               currentUser={currentUser}
               websites={websites}
+              forumPosts={forumPosts}
             />
           ) : (
             <LoggedOutLanding setCurrentUser={setCurrentUser} />

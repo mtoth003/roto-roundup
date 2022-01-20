@@ -3,12 +3,18 @@ import {useState} from 'react'
 import WebsiteCard from '../components/WebsiteCard'
 import {Routes, Route} from 'react-router-dom'
 import NavBar from '../components/NavBar'
-import Forum from './Forum'
+import ForumContainer from '../components/ForumContainer'
+import PostForm from '../components/PostForm'
+import WebsitesSearch from '../components/WebsitesSearch'
 
-function Home({websites, setCurrentUser, currentUser}) {
+function Home({websites, forumPosts, setCurrentUser, currentUser}) {
   const [selectedWebsite, setSelectedWebsite] = useState(null)
+  const [selectedPost, setSelectedPost] = useState(null)
+  const [search, setSearch] = useState("")
 
-  const websiteElements = websites.map(el => {
+  const filteredWebsites = websites.filter((website) => website.site_name.toLowerCase().includes(search.toLowerCase()))
+
+  const websiteElements = filteredWebsites.map(el => {
     return (
       <WebsiteCard
         key={el.id}
@@ -30,16 +36,33 @@ function Home({websites, setCurrentUser, currentUser}) {
     )
   })
 
-  console.log(websiteElements)
+  const forumElements = forumPosts.map(el => {
+    return(
+      <ForumContainer
+        id={el.id}
+        title={el.title}
+        content={el.content}
+        likeCount={el.like_count}
+        dislikeCount={el.dislike_count}
+        currentUser={currentUser}
+        setSelectedPost={setSelectedPost}
+        username={el.username}
+        userId={el.user_id}
+      />
+    )
+  })
 
   return (
     <div>
       <NavBar setCurrentUser={setCurrentUser}/>
-      <h1>Welcome {currentUser.username}!</h1>
+      <h3>Welcome {currentUser.username}!</h3>
+      <WebsitesSearch onSearch={setSearch} search={search} />
       <Routes>
         <Route path="/" element={websiteElements}/>
         <Route path="/websites/:id" element={selectedWebsite}/>
-        <Route path="/forum_posts" element={<Forum/>}/>
+        <Route path="/forum_posts" element={forumElements}/>
+        <Route path="/forum_posts/:id" element={selectedPost}/>
+        <Route path="/forum_posts/create" element={<PostForm/>}/>
       </Routes>
     </div>
   )

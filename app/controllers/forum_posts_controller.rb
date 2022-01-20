@@ -1,7 +1,7 @@
-class Api::ForumPostsController < ApplicationController
+class ForumPostsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-  # skip_before_action :authenticate_user, only: [:index, :show]
+  skip_before_action :authorize, only: [:index, :show]
 
   def index
     render json: ForumPost.all
@@ -30,7 +30,7 @@ class Api::ForumPostsController < ApplicationController
   private 
 
   def forum_params
-    params.permit(:title, :content, :like_count, :dislike_count, :user_id)
+    params.permit(:title, :content, :user_id, :like_count, :dislike_count)
   end
 
 end

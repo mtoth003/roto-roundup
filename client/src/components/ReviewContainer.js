@@ -29,6 +29,7 @@ function ReviewContainer({id, currentUser}) {
       if(r.ok){
         r.json().then((review) => {
           setReviews([...reviews, review])
+          console.log(reviews)
         });
         } else {
           r.json().then(errors => {
@@ -42,19 +43,18 @@ function ReviewContainer({id, currentUser}) {
         website_id: id})
     }
 
-    useEffect(() => {
-      fetch(`api/reviews/websites/${id}`)
-      .then(r => r.json())
-      .then(data => setReviews(data))
-    }, [])
-
     function handleDeleteReview(reviewToDeleteId){
       const updatedReviews = reviews.filter((review) => review.id !== reviewToDeleteId)
       setReviews(updatedReviews)
     }
-    console.log(reviews)
+
+    useEffect(() => {
+      fetch(`/reviews/websites/${id}`)
+      .then(r => r.json())
+      .then(data => setReviews(data))
+    }, [])
+
     const displayReviews = reviews.map((review) => {
-      
       return(
         <Review
           key={review.id}

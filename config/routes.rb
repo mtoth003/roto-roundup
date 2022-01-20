@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  namespace :api do
     resources :websites
     resources :forum_posts
     resources :users
@@ -14,9 +13,5 @@ Rails.application.routes.draw do
     get '/reviews/websites/:id', to: 'reviews#website_show'
     get '/reviews/users/:id', to: 'reviews#user_show'
    
-  end
-  
-
-
   get '*path', to: 'fallback#index', constraints: ->(req) { !req.xhr? && req.format.html? }
 end

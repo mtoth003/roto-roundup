@@ -1,4 +1,4 @@
-class Api::ReviewsController < ApplicationController
+class ReviewsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
   skip_before_action :authorize, only: [:website_show]
@@ -37,8 +37,7 @@ class Api::ReviewsController < ApplicationController
       render json: "This review does not belong to you!", status: :unauthorized
     end
   end
-
-
+  
   private
 
   def review_params

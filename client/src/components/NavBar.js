@@ -8,7 +8,7 @@ function NavBar({setCurrentUser}) {
   
   const handleLogout = () => {
     setCurrentUser(null);
-    fetch("api/logout", { method: "DELETE" });
+    fetch("/logout", { method: "DELETE" });
     navigate('/')
 };
   return (

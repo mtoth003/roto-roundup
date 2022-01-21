@@ -30,7 +30,7 @@ class ForumPostsController < ApplicationController
   private 
 
   def forum_params
-    params.permit(:title, :content, :user_id, :like_count, :dislike_count)
+    params.permit(:title, :content, :user_id, :like_count, :dislike_count, :id)
   end
 
 end

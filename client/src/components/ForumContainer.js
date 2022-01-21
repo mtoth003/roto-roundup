@@ -4,6 +4,8 @@ import ForumPosts from '../pages/ForumPost'
 import PostForm from './PostForm'
 
 function ForumContainer({title, content, likeCount, dislikeCount, currentUser, username, userId, setSelectedPost, id}) {
+
+  const truncatedContent = (input) => input.length > 10 ? `${input.substring(0, 10)}...` : input
   
   const buildForumPost = () => {
     setSelectedPost(
@@ -14,6 +16,7 @@ function ForumContainer({title, content, likeCount, dislikeCount, currentUser, u
         dislikeCount={dislikeCount}
         currentUser={currentUser}
         username={username}
+        id={id}
       />
     )
   }
@@ -28,12 +31,14 @@ function ForumContainer({title, content, likeCount, dislikeCount, currentUser, u
     <>
     <Link to={'/forum_posts/create'} >
         <input type="submit" value="Create Post" onClick={handleClick} />
-      </Link>
+    </Link>
   
     <div>
       <Link to={`/forum_posts/${id}`} onClick={buildForumPost}>
         <h1>{title}</h1>
       </Link>
+        <p>created by: {username}</p>
+        <p>{truncatedContent(content)}</p>
     </div>
     </>
   )

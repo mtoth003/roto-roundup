@@ -1,31 +1,16 @@
-import {useState, useEffect} from 'react'
-import {Route} from "react-router-dom"
+import {useState} from 'react'
 import WebsiteCard from '../components/WebsiteCard'
 import WebsitesSearch from '../components/WebsitesSearch'
 
-function WebsitePage({websites, currentUser, setCurrentUser, setSelectedWebsite}) {
+function WebsitePage({websites, currentUser, setSelectedWebsite}) {
   const [search, setSearch] = useState("")
   const [select, setSelect] = useState("football")
+
+  console.log(websites)
   
   const sportsFilter = websites.filter((website) => website[select])
   
   const searchedWebsites = sportsFilter.filter((website) => website.site_name.toLowerCase().includes(search.toLowerCase()))
-  // const baseballFilter = websites.filter((website) => website.baseball)
-  // const basketballFilter = websites.filter((website) => website.basketball)
-  // const hockeyFilter = websites.filter((website) => website.hockey)
-
-  // console.log(hockeyFilter)
-
-  // useEffect(() => {
-  //   const sortArray = type => {
-  //     const types = {
-  //       siteName: 'siteName',
-  //     }
-  //   }
-  //   const sortProperty = types[type]
-  //   const sorted = [...websites].sort((a,b) => b[sortProperty] - a[sortProperty])
-  //   setData(sorted)
-  // })
 
   const filterElements = sportsFilter.map(el => {
     return (
@@ -72,14 +57,6 @@ function WebsitePage({websites, currentUser, setCurrentUser, setSelectedWebsite}
     )
   })
 
-  const renderPage = () => {
-    if(search === ""){
-      return filterElements
-    } else {
-      return searchElements
-    }
-  }
-
   return (
     <div>
       <WebsitesSearch 
@@ -88,7 +65,7 @@ function WebsitePage({websites, currentUser, setCurrentUser, setSelectedWebsite}
         setSelect={setSelect}
       />
       <div>
-        {renderPage()}
+        {search === "" ? filterElements : searchElements}
       </div>
     </div>
   )

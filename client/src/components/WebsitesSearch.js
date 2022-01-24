@@ -1,8 +1,4 @@
-import {useState} from 'react'
-
 function WebsitesSearch({search, onSearch, setSelect}) {
-  
-  const all = ["football" + "baseball" + "basketball" + "hockey"]
 
   return (
     <div>

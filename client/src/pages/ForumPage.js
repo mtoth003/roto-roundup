@@ -22,6 +22,7 @@ function ForumPage({forumPosts, currentUser, setSelectedPost}) {
         username={el.username}
         userId={el.user_id}
         createdAt={el.created_at}
+        forumPosts={forumPosts}
       />
     )
   })

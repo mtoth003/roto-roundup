@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom'
 import ForumPost from '../pages/ForumPost'
 import PostForm from './PostForm'
 
-function ForumContainer({title, content, likeCount, dislikeCount, currentUser, username, userId, setSelectedPost, id, createdAt}) {
-
+function ForumContainer({forumPosts, title, content, likeCount, dislikeCount, currentUser, username, userId, setSelectedPost, id, createdAt}) {
+  const [posts, setPosts] = useState([])
   const truncatedContent = (input) => input.length > 10 ? `${input.substring(0, 10)}...` : input
 
   const parseTime = (created_at) => {
@@ -39,6 +39,22 @@ function ForumContainer({title, content, likeCount, dislikeCount, currentUser, u
     }
     return Math.floor(seconds) + " seconds";
   }
+
+  const handleDeleteThread = (threadToDeleteId) => {
+    const updatedThreads = forumPosts.filter((forumPost) => forumPost.id !== threadToDeleteId)
+    setPosts(updatedThreads)
+  }
+
+  const handleDelete = () => {
+    fetch(`/forum_posts/${id}`, {
+      method: "DELETE"
+    }).then(r => {
+      if(r.ok){
+        handleDeleteThread(id)
+        window.location.reload(false)
+      }
+    })
+  }
   
   const buildForumPost = () => {
     setSelectedPost(
@@ -63,6 +79,7 @@ function ForumContainer({title, content, likeCount, dislikeCount, currentUser, u
       <Link to={`/forum_posts/${id}`} onClick={buildForumPost}>
         <h1>{title}</h1>
       </Link>
+        {currentUser.admin === true ? <button onClick={handleDelete}>Delete Thread</button> :  null}
         <p>By: {username}</p>
         <span>created: {timeSince(parseTime(createdAt))} ago</span>
         <p>{truncatedContent(content)}</p>

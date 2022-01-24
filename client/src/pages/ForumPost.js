@@ -2,8 +2,8 @@ import React from 'react'
 import {useState} from 'react'
 import CommentContainer from '../components/CommentContainer'
 
-function ForumPost({title, content, likeCount, dislikeCount, username, currentUser, id}) {
-
+function ForumPost({title, content, username, currentUser, id}) {
+  console.log(currentUser)
 
   return (
     <div>

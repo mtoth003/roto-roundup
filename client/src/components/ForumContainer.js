@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import ForumPosts from '../pages/ForumPost'
+import ForumPost from '../pages/ForumPost'
 import PostForm from './PostForm'
 
 function ForumContainer({title, content, likeCount, dislikeCount, currentUser, username, userId, setSelectedPost, id, createdAt}) {
@@ -42,7 +42,7 @@ function ForumContainer({title, content, likeCount, dislikeCount, currentUser, u
   
   const buildForumPost = () => {
     setSelectedPost(
-      <ForumPosts
+      <ForumPost
         title={title}
         content={content}
         likeCount={likeCount}

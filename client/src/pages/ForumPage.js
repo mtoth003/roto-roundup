@@ -11,6 +11,7 @@ function ForumPage({forumPosts, currentUser, setSelectedPost}) {
   const forumElements = searchedPosts.map(el => {
     return(
       <ForumContainer
+        key={el.id}
         id={el.id}
         title={el.title}
         content={el.content}

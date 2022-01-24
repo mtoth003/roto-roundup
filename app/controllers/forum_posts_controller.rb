@@ -3,6 +3,8 @@ class ForumPostsController < ApplicationController
 
   skip_before_action :authorize, only: [:index, :show]
 
+  before_action :is_authorized, only: [:destroy]
+
   def index
     render json: ForumPost.all
   end
@@ -27,10 +29,21 @@ class ForumPostsController < ApplicationController
     end
   end
 
+  def destroy
+    forum_post = ForumPost.find(params[:id])
+    forum_post.destroy
+    head :no_content
+  end
+
   private 
 
   def forum_params
     params.permit(:title, :content, :user_id, :like_count, :dislike_count, :id)
+  end
+
+  def is_authorized
+    permitted = current_user.admin?
+    render json: "You are not permitted to delete this thread", status: :forbidden unless permitted
   end
 
 end

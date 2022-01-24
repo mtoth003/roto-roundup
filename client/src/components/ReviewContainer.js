@@ -29,7 +29,7 @@ function ReviewContainer({id, currentUser}) {
       if(r.ok){
         r.json().then((review) => {
           setReviews([...reviews, review])
-          console.log(reviews)
+          console.log(review)
         });
         } else {
           r.json().then(errors => {
@@ -52,7 +52,7 @@ function ReviewContainer({id, currentUser}) {
       fetch(`/reviews/websites/${id}`)
       .then(r => r.json())
       .then(data => setReviews(data))
-    }, [])
+    }, [id])
 
     const displayReviews = reviews.map((review) => {
       return(
@@ -63,7 +63,6 @@ function ReviewContainer({id, currentUser}) {
           comment={review.comment}
           user={review.username}
           handleDeleteReview={handleDeleteReview}
-          reviewFormData={reviewFormData}
           handleSubmit={handleSubmit}
           reviews={reviews}
           currentUser={currentUser}
@@ -76,9 +75,6 @@ function ReviewContainer({id, currentUser}) {
     <div id="review-container">
       {displayReviews}
       <ReviewForm
-        websiteId={id}
-        reviews={reviews}
-        setReviews={setReviews}
         reviewFormData={reviewFormData}
         handleChange={handleChange}
         handleSubmit={handleSubmit}

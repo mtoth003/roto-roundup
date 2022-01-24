@@ -11,7 +11,7 @@ function CommentContainer({id, currentUser}) {
   }
 
   const handleSubmit = e => {
-    e.preventDefautl();
+    e.preventDefault();
 
     const configObj = {
       method: "POST",
@@ -23,6 +23,7 @@ function CommentContainer({id, currentUser}) {
       if(r.ok){
         r.json().then((comment) => {
         setComments([...comments, comment])
+        console.log(comment)
         })
       } else {
         r.json().then(errors => {
@@ -42,9 +43,9 @@ function CommentContainer({id, currentUser}) {
     fetch(`/comments/forum_posts/${id}`)
     .then(r => r.json())
     .then(data => setComments(data))
-  }, [])
+  }, [id])
 
-  console.log(comments)
+  
 
   const displayComments = comments.map((comment) => {
     return(
@@ -52,6 +53,7 @@ function CommentContainer({id, currentUser}) {
         key={comment.id}
         id={comment.id}
         text={comment.text}
+        // user={comment.user_id}
         user={comment.username}
         handleDeleteComment={handleDeleteComment}
         handleSubmit={handleSubmit}
@@ -66,7 +68,11 @@ function CommentContainer({id, currentUser}) {
   return (
     <div>
       {displayComments}
-      <CommentForm/>
+      <CommentForm
+        commentFormData={commentFormData}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
     </div>
   )
 }

@@ -212,4 +212,7 @@ ForumPost.create(title: "Fantasy Pros!", content: "Easily the best site, the Dra
 
 Review.create(rating: 5, comment: "Amazing site!", user_id: u2.id, website_id: websites.first.id)
 
+Comment.create(text: "Yes! The non fantasy content is great and makes the subscription well worth it", user_id: User.second.id, forum_post_id: ForumPost.last.id)
+Comment.create(text: "I agree, this is my favorite site!", user_id: User.second.id, forum_post_id: ForumPost.first.id)
+
 puts "✅ Done seeding!"

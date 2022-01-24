@@ -33,7 +33,7 @@ function App() {
   useEffect(() => {
     fetch("/forum_posts")
       .then((res) => res.json())
-      .then(setForumPosts)
+      .then(data => setForumPosts(data))
   }, [])
 
   if(!authenticated){

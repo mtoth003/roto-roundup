@@ -30,6 +30,7 @@ function PostForm() {
         res.json().then((post) => {
           setPosts([...posts, post])
           navigate("/forum_posts")
+          window.location.reload(false)
         })
       } else {
         res.json().then(errors => {
@@ -48,7 +49,7 @@ function PostForm() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        {/* <label htmlFor='title'>Title</label> */}
+        <label htmlFor='title'>Title</label><br></br>
         <input type="text" id="title"  onChange={(e) => handleChange(e)} placeholder='Add a title' />
         <input type="text" id="content"  onChange={(e) => handleChange(e)} placeholder='Enter your message'/>
         <input type="submit" value="Submit Post"/>

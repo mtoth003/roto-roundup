@@ -23,7 +23,7 @@ class ForumPostsController < ApplicationController
       forum_post.update(forum_params)
       render json: forum_post
     else
-      render josn: "This post does not belong to you", status: :unauthorized
+      render json: "This post does not belong to you", status: :unauthorized
     end
   end
 

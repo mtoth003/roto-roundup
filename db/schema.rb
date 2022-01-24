@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_17_160925) do
+ActiveRecord::Schema.define(version: 2022_01_24_011902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.text "text"
+    t.bigint "user_id", null: false
+    t.bigint "forum_post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["forum_post_id"], name: "index_comments_on_forum_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "forum_posts", force: :cascade do |t|
     t.string "title"
@@ -65,6 +75,8 @@ ActiveRecord::Schema.define(version: 2022_01_17_160925) do
     t.boolean "hockey"
   end
 
+  add_foreign_key "comments", "forum_posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "forum_posts", "users"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "websites"

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :websites, through: :reviews
   has_many :forum_posts
+  has_many :comments, through: :forum_posts
 
   validates :username, presence: true, uniqueness: true
 end

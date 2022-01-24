@@ -1,34 +1,15 @@
 import React from 'react'
 import {useState} from 'react'
-import WebsiteCard from '../components/WebsiteCard'
 import {Routes, Route} from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import ForumContainer from '../components/ForumContainer'
 import PostForm from '../components/PostForm'
-import WebsitesSearch from '../components/WebsitesSearch'
 import WebsitePage from './WebsitePage'
-import WebsiteDetails from './WebsiteDetails'
 import ForumPage from './ForumPage'
 
 function Home({websites, forumPosts, setCurrentUser, currentUser}) {
   const [selectedWebsite, setSelectedWebsite] = useState(null)
   const [selectedPost, setSelectedPost] = useState(null)
-
-  const forumElements = forumPosts.map(el => {
-    return(
-      <ForumContainer
-        id={el.id}
-        title={el.title}
-        content={el.content}
-        likeCount={el.like_count}
-        dislikeCount={el.dislike_count}
-        currentUser={currentUser}
-        setSelectedPost={setSelectedPost}
-        username={el.username}
-        userId={el.user_id}
-      />
-    )
-  })
 
   return (
     <div>

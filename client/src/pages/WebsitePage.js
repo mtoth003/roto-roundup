@@ -5,8 +5,6 @@ import WebsitesSearch from '../components/WebsitesSearch'
 function WebsitePage({websites, currentUser, setSelectedWebsite}) {
   const [search, setSearch] = useState("")
   const [select, setSelect] = useState("football")
-
-  console.log(websites)
   
   const sportsFilter = websites.filter((website) => website[select])
   

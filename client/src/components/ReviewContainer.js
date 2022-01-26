@@ -54,6 +54,8 @@ function ReviewContainer({id, currentUser}) {
       .then(data => setReviews(data))
     }, [id])
 
+    const totalReviews = reviews.length
+
     const displayReviews = reviews.map((review) => {
       return(
         <Review
@@ -73,6 +75,7 @@ function ReviewContainer({id, currentUser}) {
 
   return (
     <div id="review-container">
+      <h3>{totalReviews} user reviews</h3>
       {displayReviews}
       <ReviewForm
         reviewFormData={reviewFormData}

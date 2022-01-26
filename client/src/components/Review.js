@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {FaStar} from 'react-icons/fa'
 
 function Review({user, comment, rating, id, handleDeleteReview, setReviews, reviews, currentUser}) {
   const [isEdit, setIsEdit] = useState(null)
@@ -62,6 +63,21 @@ function Review({user, comment, rating, id, handleDeleteReview, setReviews, revi
     })
   }
 
+  const starRender = (input) => {
+    const styledStar = <FaStar size={15} color="gold"/>
+    if(input > 0 && input < 2){
+      return <>{styledStar}</>
+    } else if (input >= 2 && input < 3){
+      return <>{styledStar} {styledStar}</>
+    } else if (input >=3 && input < 4){
+      return <>{styledStar} {styledStar} {styledStar}</>
+    } else if (input >= 4 && input < 5){
+      return <>{styledStar} {styledStar} {styledStar} {styledStar}</>
+    } else if (input >= 5){
+      return <>{styledStar} {styledStar} {styledStar} {styledStar} {styledStar}</>
+    }
+  }
+
   return (
     <div>
       {isEdit ?
@@ -85,9 +101,9 @@ function Review({user, comment, rating, id, handleDeleteReview, setReviews, revi
         </form>
         :
         <div>
-          <h4>{user}</h4>
-          <p>Rating: {rating}</p>
-          <p>Comment: {comment}</p>
+          <h6>{user}</h6>
+          <p>{starRender(rating)}</p>
+          <p>{comment}</p>
           {user === currentUser.username ?
             <>
               <button onClick={handleEdit}>Edit Review</button>

@@ -13,10 +13,6 @@ class WebsitesController < ApplicationController
     render json: website
   end
 
-  def avg_rating
-    reviews.average(:rating).round(2).to_f
-  end
-
   private
 
   def find_website

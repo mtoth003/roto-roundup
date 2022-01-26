@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get '/reviews/users/:id', to: 'reviews#user_show'
     get 'comments/forum_posts/:id', to: 'comments#forum_post_show'
     get '/comments/users/:id', to: 'comments#user_show' 
+    get '/account', to: 'users#show'
    
   get '*path', to: 'fallback#index', constraints: ->(req) { !req.xhr? && req.format.html? }
 end

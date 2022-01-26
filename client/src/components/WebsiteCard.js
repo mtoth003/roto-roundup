@@ -1,9 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import WebsiteDetails from '../pages/WebsiteDetails'
+import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button'
+import {MdSportsBasketball} from 'react-icons/md'
+import {FaFootballBall} from 'react-icons/fa'
+import {GiBaseballGlove} from 'react-icons/gi'
+import {GiHockey} from 'react-icons/gi'
+import {FaStar} from 'react-icons/fa'
 
 
-function WebsiteCard({id, siteName, siteUrl, subscriptionPageUrl, imageUrl, features, paidContent, freeContent, football, baseball, basketball, hockey, setSelectedWebsite, currentUser}) {
+function WebsiteCard({id, siteName, siteUrl, subscriptionPageUrl, imageUrl, features, paidContent, freeContent, football, baseball, basketball, hockey, setSelectedWebsite, currentUser, avgRating}) {
   const buildWebsite = () => {
     setSelectedWebsite(
       <WebsiteDetails
@@ -27,7 +35,7 @@ function WebsiteCard({id, siteName, siteUrl, subscriptionPageUrl, imageUrl, feat
 
   const footballRender = (input) => {
     if(input === true){
-      return "football"
+      return <FaFootballBall size={45} color={"#825736"} />
     } else {
       return ""
     }
@@ -35,7 +43,7 @@ function WebsiteCard({id, siteName, siteUrl, subscriptionPageUrl, imageUrl, feat
 
   const baseballRender = (input) => {
     if(input === true){
-      return "baseball"
+      return <GiBaseballGlove size={45} color={"#a67a5b"}/>
     } else {
       return ""
     }
@@ -43,7 +51,7 @@ function WebsiteCard({id, siteName, siteUrl, subscriptionPageUrl, imageUrl, feat
 
   const basketballRender = (input) => {
     if(input === true){
-      return "basketball"
+      return <MdSportsBasketball size={45} color={"#b43b08"}/>
     } else {
       return ""
     }
@@ -51,23 +59,43 @@ function WebsiteCard({id, siteName, siteUrl, subscriptionPageUrl, imageUrl, feat
 
   const hockeyRender = (input) => {
     if(input === true){
-      return "hockey"
+      return <GiHockey size={45} />
     } else {
       return ""
     }
   }
+
   
+
+  const starRender = (input) => {
+    const styledStar = <FaStar size={25} color="gold"/>
+    if(input > 0 && input < 2){
+      return <>{styledStar}</>
+    } else if (input >= 2 && input < 3){
+      return <>{styledStar} {styledStar}</>
+    } else if (input >=3 && input < 4){
+      return <>{styledStar} {styledStar} {styledStar}</>
+    } else if (input >= 4 && input < 5){
+      return <>{styledStar} {styledStar} {styledStar} {styledStar}</>
+    } else if (input >= 5){
+      return <>{styledStar} {styledStar} {styledStar} {styledStar} {styledStar}</>
+    }
+  } 
+
   return (
-    <Link to={`/websites/${id}`} onClick={buildWebsite}>
-      <div className='website-card'>
-        <h3>{siteName}</h3>
-        <img src={imageUrl} alt="website image" className='website-card-image' style={{height: "350px", width: "350px"}}/>
-        <p>{footballRender(football)}</p>
-        <p>{baseballRender(baseball)}</p>
-        <p>{basketballRender(basketball)}</p>
-        <p>{hockeyRender(hockey)}</p>
-      </div>
-    </Link>
+    <Container>
+      <Card style={{ width: '45%' }}>
+        <Card.Img variant="top" style={{height: "350px", width: "100%"}} src={imageUrl} />
+        <Card.Body>
+          <Card.Title className="text-center">{siteName}</Card.Title>
+          <Card.Text style={{textAlign: 'center'}}>{starRender(avgRating)}</Card.Text>
+          <Card.Text style={{ textAlign: "center"}}>
+            {footballRender(football)} {baseballRender(baseball)} {basketballRender(basketball)} {hockeyRender(hockey)}
+          </Card.Text>
+          <Link to={`/websites/${id}`}><Button variant="outline-secondary w-100" onClick={buildWebsite}>View Site Details</Button></Link>
+        </Card.Body>
+      </Card>
+    </Container>
   )
 }
 

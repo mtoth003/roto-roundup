@@ -9,7 +9,7 @@ function WebsitePage({websites, currentUser, setSelectedWebsite}) {
   const sportsFilter = websites.filter((website) => website[select])
   
   const searchedWebsites = sportsFilter.filter((website) => website.site_name.toLowerCase().includes(search.toLowerCase()))
-
+  
   const filterElements = sportsFilter.map(el => {
     return (
       <WebsiteCard
@@ -28,6 +28,7 @@ function WebsitePage({websites, currentUser, setSelectedWebsite}) {
         hockey={el.hockey}
         setSelectedWebsite={setSelectedWebsite}
         currentUser={currentUser}
+        avgRating={el.avg_rating}
       />
     )
   })
@@ -56,15 +57,13 @@ function WebsitePage({websites, currentUser, setSelectedWebsite}) {
   })
 
   return (
-    <div>
+    <div className='website-page'>
       <WebsitesSearch 
         onSearch={setSearch} 
         search={search} 
         setSelect={setSelect}
       />
-      <div>
         {search === "" ? filterElements : searchElements}
-      </div>
     </div>
   )
 }

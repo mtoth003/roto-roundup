@@ -1,5 +1,4 @@
 import React from 'react'
-import {useState} from 'react'
 import CommentContainer from '../components/CommentContainer'
 
 function ForumPost({title, content, username, currentUser, id}) {
@@ -10,7 +9,7 @@ function ForumPost({title, content, username, currentUser, id}) {
       <h3>{title}</h3>
       <h5>{username}</h5>
       <p>{content}</p>
-      <CommentContainer id={id} currentUser={currentUser} />
+      <CommentContainer id={id} currentUser={currentUser} username={username} />
     </div>
   )
 }

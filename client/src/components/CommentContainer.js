@@ -53,7 +53,6 @@ function CommentContainer({id, currentUser}) {
         key={comment.id}
         id={comment.id}
         text={comment.text}
-        // user={comment.user_id}
         user={comment.username}
         handleDeleteComment={handleDeleteComment}
         handleSubmit={handleSubmit}

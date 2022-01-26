@@ -1,5 +1,8 @@
 import {useState} from 'react'
 import {Link} from 'react-router-dom'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
 
 function LoginPage({setCurrentUser}) {
   const [loginData, setLoginData] = useState({
@@ -38,25 +41,22 @@ function LoginPage({setCurrentUser}) {
     })
   }
   return (
-    <div className="page-container">
-      <div className="form-container">
-        <header className="signin-title">RotoRoundup</header>
-        <form className="signin-register" onSubmit={handleSubmit}>
-          <div className="field username">
-            <div className="input-area">
-              <input type="text" id="username" className="login-details" value={loginData.username} placeholder="Username" onChange={(e) => handleChange(e)} />
-            </div>
-          </div>
-          <div className="field password">
-            <div className="input-area">
-              <input type="password" id="password" className="login-details" value={loginData.password} placeholder="Password" onChange={(e) => handleChange(e)} />
-            </div>
-          </div>
-            <input type="submit" className="submit" value="Sign in" />
-        </form>
-        <div className="link-text"> Need an account ? <Link className="reg-link" to="/signup">Sign up now</Link></div>
-      </div>
-    </div>
+    
+      <Container className='login-form' style={{width: "30%"}}>
+      <h1 className='text-center'>RotoRoundup</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="username">
+          <Form.Label>Username</Form.Label>
+          <Form.Control type="text" value={loginData.username} placeholder="Enter username" onChange={(e) => handleChange(e)}/>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" value={loginData.password} placeholder="Password" onChange={(e) => handleChange(e)}/>
+        </Form.Group>
+        <Button variant="outline-primary w-100" type="submit">Sign in</Button>
+        <div style={{padding: '10px'}} className="text-center">Need an account ? <Link to="/signup">Sign up now</Link></div>
+      </Form>
+      </Container>
   )
 }
 

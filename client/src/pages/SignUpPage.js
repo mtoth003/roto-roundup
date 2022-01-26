@@ -1,6 +1,9 @@
 import {useState} from 'react'
 import {Link} from 'react-router-dom'
 import {useNavigate} from 'react-router-dom'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
 
 function SignUpPage({setCurrentUser}) {
   const [formData, setFormData] = useState({
@@ -43,45 +46,38 @@ function SignUpPage({setCurrentUser}) {
     })
   }
   return (
-    <div className="page-container">
-      <div className="form-container">
-        <header className="signin-title">RotoRoundup</header>
-        <form className="signin-register" onSubmit={handleSubmit}>
-          <div className="field firstName">
-            <div className="input-area">
-              <input type="text" id="first_name" value={formData.first_name} onChange={(e) => handleChange(e)} placeholder='Enter First Name' />
-            </div>
-          </div>
-          <div className="field lastName">
-            <div className="input-area">
-              <input type="text" id="last_name" value={formData.last_name} onChange={(e) => handleChange(e)} placeholder='Enter Last Name' />
-            </div>
-          </div>
-          <div className="field username">
-            <div className="input-area">
-              <input type="text" id="username" value={formData.username} onChange={(e) => handleChange(e)} placeholder="Enter Username" />
-            </div>
-          </div>
-          <div className="field email">
-            <div className="input-area">
-              <input type="text" id="email" value={formData.email} onChange={(e) => handleChange(e)} placeholder="Enter Email" />
-            </div>
-          </div>
-          <div className="field password">
-            <div className="input-area">
-              <input type="password" id="password" value={formData.password} onChange={(e) => handleChange(e)} placeholder="Enter Password" />
-            </div>
-          </div>
-          <div className="field password">
-            <div className="input-area">
-              <input type="password" id="password_confirmation" value={formData.password_confirmation} onChange={(e) => handleChange(e)} placeholder="Confirm Password" />
-            </div>
-          </div>
-            <input type="submit" className="submit" value="Sign up" />
-          </form>
-        <div className="link-text"> Already registered ? <Link className="reg-link" to="/">Sign in</Link> </div>
-      </div>
-    </div>
+
+    <Container className="signin-form" style={{width: "30%"}}>
+       <h1 className='text-center'>RotoRoundup</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className='mb-3' controlId="first_name">
+          <Form.Label>First Name</Form.Label>
+          <Form.Control type="text" value={formData.first_name} onChange={(e) => handleChange(e)} placeholder='Enter First Name' />
+        </Form.Group>
+        <Form.Group className='mb-3' controlId="last_name">
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control type="text" value={formData.last_name} onChange={(e) => handleChange(e)} placeholder='Enter Last Name' />
+        </Form.Group>
+        <Form.Group className='mb-3' controlId="username">
+          <Form.Label>Username</Form.Label>
+          <Form.Control type="text" value={formData.username} onChange={(e) => handleChange(e)} placeholder='Enter Username' />
+        </Form.Group>
+        <Form.Group className='mb-3' controlId="email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="text" value={formData.email} onChange={(e) => handleChange(e)} placeholder='Enter Email Address' />
+        </Form.Group>
+        <Form.Group className='mb-3' controlId="firstName">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="text" value={formData.password} onChange={(e) => handleChange(e)} placeholder='Enter Password' />
+        </Form.Group>
+        <Form.Group className='mb-3' controlId="firstName">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control type="text" value={formData.password_confirmation} onChange={(e) => handleChange(e)} placeholder='Confirm Password' />
+        </Form.Group>
+        <Button variant="outline-primary w-100" type="submit">Sign up</Button>
+        <div style={{padding: '10px'}} className="text-center">Already registered ? <Link to="/">Sign in</Link></div>
+        </Form>
+    </Container>
   )
 }
 

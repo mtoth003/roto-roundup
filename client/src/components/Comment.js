@@ -66,7 +66,7 @@ function Comment({id, text, user, handleDeleteComment, comments, currentUser, se
         </form>
         :
         <div>
-          <h5>{currentUser.username}</h5>
+          <h5>{user}</h5>
           <p>{text}</p>
           {user === currentUser.username ? 
             <>

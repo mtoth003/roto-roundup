@@ -1,10 +1,12 @@
 function WebsitesSearch({search, onSearch, setSelect}) {
 
   return (
-    <div>
+    <>
+    <div className='sites-search'>
       <input type="text" placeholder="Search sites by name" value={search} onChange={(e) => onSearch(e.target.value)}/>
-    <div>
-      <select onChange={(e) => setSelect(e.target.value)} >
+    </div>
+    <div className='sites-filter'>
+      <select onChange={(e) => setSelect(e.target.value)} className="box">
         <option value="football">All</option>
         <option value="football">Football</option>
         <option value="baseball">Baseball</option>
@@ -12,7 +14,7 @@ function WebsitesSearch({search, onSearch, setSelect}) {
         <option value="hockey">Hockey</option>
       </select>
     </div>
-    </div>
+    </>
   )
 }
 

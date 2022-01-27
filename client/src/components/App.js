@@ -8,6 +8,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [websites, setWebsites] = useState([])
   const [forumPosts, setForumPosts] = useState([])
+  const [users, setUsers] = useState(null)
 
   useEffect(() => {
     fetch("/me", {
@@ -36,6 +37,12 @@ function App() {
       .then(data => setForumPosts(data))
   }, [])
 
+  useEffect(() => {
+    fetch("/users")
+    .then((res) => res.json())
+    .then(data => setUsers(data))
+  }, [])
+
   if(!authenticated){
     return <div></div>
   }
@@ -49,6 +56,7 @@ function App() {
               currentUser={currentUser}
               websites={websites}
               forumPosts={forumPosts}
+              users={users}
             />
           ) : (
             <LoggedOutLanding setCurrentUser={setCurrentUser} />

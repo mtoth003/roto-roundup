@@ -66,13 +66,13 @@ function SignUpPage({setCurrentUser}) {
           <Form.Label>Email</Form.Label>
           <Form.Control type="text" value={formData.email} onChange={(e) => handleChange(e)} placeholder='Enter Email Address' />
         </Form.Group>
-        <Form.Group className='mb-3' controlId="firstName">
+        <Form.Group className='mb-3' controlId="password">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="text" value={formData.password} onChange={(e) => handleChange(e)} placeholder='Enter Password' />
+          <Form.Control type="password" value={formData.password} onChange={(e) => handleChange(e)} placeholder='Enter Password' />
         </Form.Group>
-        <Form.Group className='mb-3' controlId="firstName">
+        <Form.Group className='mb-3' controlId="password_confirmation">
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type="text" value={formData.password_confirmation} onChange={(e) => handleChange(e)} placeholder='Confirm Password' />
+          <Form.Control type="password" value={formData.password_confirmation} onChange={(e) => handleChange(e)} placeholder='Confirm Password' />
         </Form.Group>
         <Button variant="outline-primary w-100" type="submit">Sign up</Button>
         <div style={{padding: '10px'}} className="text-center">Already registered ? <Link to="/">Sign in</Link></div>

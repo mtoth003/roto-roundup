@@ -1,3 +1,4 @@
+
 .header {
   text-align: center;
   color: white;
@@ -77,6 +78,48 @@
   border-radius: 5px;
   box-shadow: 4px 4px #ccc;
 }
+
+.details-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  /* background: #e5e5e5 */
+}
+
+.website-details-image {
+  /* display: block;
+  margin-left: auto;
+  margin-right: auto; */
+  height: 350px;
+  width: 350px;
+}
+
+/* .details-links {
+  text-align: center;
+} */
+
+.reviews-container {
+  border: 3px solid rgb(125, 134, 179);
+  box-shadow: 4px 4px #ccc;
+  border-radius: 5px;
+  padding: 5px
+}
+
+.details-container .column {
+  width: 50%
+}
+
+.details-features {
+  text-align: justify;
+}
+
+.num-input {
+  width: 100%;
+}
+
+/* #col-left {
+  margin: 5px
+} */
 
 /* .App{
   background-color: #f5f5f5;

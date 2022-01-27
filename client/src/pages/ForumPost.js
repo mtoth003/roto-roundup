@@ -2,7 +2,6 @@ import React from 'react'
 import CommentContainer from '../components/CommentContainer'
 
 function ForumPost({title, content, username, currentUser, id}) {
-  console.log(currentUser)
 
   return (
     <div>

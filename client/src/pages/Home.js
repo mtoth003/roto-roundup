@@ -7,9 +7,9 @@ import WebsitePage from './WebsitePage'
 import ForumPage from './ForumPage'
 import Header from '../components/Header'
 import AccountPage from './AccountPage'
-import ManageUsers from './ManageUsers'
+import ManageUsersContainer from '../components/ManageUsersContainer'
 
-function Home({websites, forumPosts, setCurrentUser, currentUser}) {
+function Home({websites, forumPosts, setCurrentUser, currentUser, users}) {
   const [selectedWebsite, setSelectedWebsite] = useState(null)
   const [selectedPost, setSelectedPost] = useState(null)
 
@@ -24,7 +24,7 @@ function Home({websites, forumPosts, setCurrentUser, currentUser}) {
         <Route path="/forum_posts/:id" element={selectedPost}/>
         <Route path="/forum_posts/create" element={<PostForm/>}/>
         <Route path="/account" element={<AccountPage currentUser={currentUser}/>}/>
-        <Route path="/users" element={<ManageUsers/>}/>
+        <Route path="/users" element={<ManageUsersContainer users={users}/>}/>
       </Routes>
     </div>
   )

@@ -1,5 +1,8 @@
 import {useState} from 'react'
 import {FaStar} from 'react-icons/fa'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
 
 function Review({user, comment, rating, id, handleDeleteReview, setReviews, reviews, currentUser}) {
   const [isEdit, setIsEdit] = useState(null)
@@ -81,33 +84,28 @@ function Review({user, comment, rating, id, handleDeleteReview, setReviews, revi
   return (
     <div>
       {isEdit ?
-        <form className="review-form" onSubmit={handleSubmit}>
-          <h4>{user}</h4>
-          <div className="field rating">
-            <div className="input-area">
-              <p>Rating:
-                <input type="number" min="1" max="5" id="rating" value={updateReviewFormData.rating} onChange={(e) => handleChange(e)} placeholder={rating} />
-              </p>
-            </div>
-          </div>
-          <div className="field comment">
-            <div className="input-area">
-              <p>Comment:
-                <input type="text" id="comment" value={updateReviewFormData.comment} onChange={(e) => handleChange(e)} placeholder={comment} />
-              </p>
-            </div>
-          </div>
-            <input type="submit" className="submit" value="Save Review" />
-        </form>
+        <Container>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className='mb-3' controlId="rating">
+              <Form.Label>Rating</Form.Label>
+              <Form.Control type="number" min="1" max="5" value={updateReviewFormData.rating} onChange={(e) => handleChange(e)} placeholder={rating}/>
+            </Form.Group>
+            <Form.Group className='mb-3' controlId="comment">
+              <Form.Label>Comment</Form.Label>
+              <Form.Control as="textarea" rows={2} value={updateReviewFormData.comment} onChange={(e) => handleChange(e)} placeholder={comment}  />
+            </Form.Group>
+              <Button variant="outline-success" size="sm" type="submit">Save Review</Button>
+          </Form>
+        </Container>
         :
-        <div>
+        <div className="reviews-container">
           <h6>{user}</h6>
           <p>{starRender(rating)}</p>
           <p>{comment}</p>
           {user === currentUser.username ?
             <>
-              <button onClick={handleEdit}>Edit Review</button>
-              <button onClick={handleDelete}>Delete Review</button>
+              <Button variant="outline-secondary" size="sm" onClick={handleEdit}>Edit Review</Button>
+              <Button variant="outline-danger" size="sm" onClick={handleDelete}>Delete Review</Button>
             </>
             :
             null

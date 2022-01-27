@@ -75,8 +75,9 @@ function ReviewContainer({id, currentUser}) {
 
   return (
     <div id="review-container">
-      <h3>{totalReviews} user reviews</h3>
+      <h3 style={{textAlign: "center"}}>{totalReviews} user reviews</h3>
       {displayReviews}
+      <h3 style={{textAlign: "center", padding: "10px"}}>Provide Feedback</h3>
       <ReviewForm
         reviewFormData={reviewFormData}
         handleChange={handleChange}

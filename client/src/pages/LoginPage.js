@@ -13,15 +13,13 @@ function LoginPage({setCurrentUser}) {
   const [errors, setErrors] = useState([])
 
   const handleSubmit = (e) => {
-    const configObg = {
+    const configObj = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify(loginData)
     }
     e.preventDefault();
-    fetch("/login", configObg).then((r) => {
+    fetch("/login", configObj).then((r) => {
       if(r.ok){
         r.json().then((user) => {
           setCurrentUser(user)

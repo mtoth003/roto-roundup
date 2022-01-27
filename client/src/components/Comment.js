@@ -1,4 +1,6 @@
 import {useState} from 'react'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 function Comment({id, text, user, handleDeleteComment, comments, currentUser, setComments}) {
   const [isEdit, setIsEdit] = useState(null)
@@ -57,21 +59,22 @@ function Comment({id, text, user, handleDeleteComment, comments, currentUser, se
 
   
   return (
-    <div>
+    <div className='reply-thread'>
       {isEdit ? 
-        <form className='comment-form' onSubmit={handleSubmit}>
-          <h3>Post Reply</h3>
-          <input type="text" id="text" value={updateCommentFormData.text} onChange={(e) => handleChange(e)} placeholder={text} />
-          <input type="submit" value="Save comment" />
-        </form>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className='mb-3' controlId="text">
+            <Form.Label>Edit</Form.Label>
+            <Form.Control as="textarea" rows={3} value={updateCommentFormData.text} onChange={(e) => handleChange(e)} placeholder={text}  />
+          </Form.Group>
+            <Button variant="outline-success" size="sm" type="submit">Save Reply</Button>
+        </Form>
         :
         <div>
-          <h5>{user}</h5>
+          <h6 style={{fontWeight: "bold", color: "blue"}}>{user}</h6>
           <p>{text}</p>
-          {user === currentUser.username ? 
+            {user === currentUser.username ? 
             <>
-            <button onClick={handleEdit}>Edit Comment</button>
-            <button onClick={handleDelete}>Delete Comment</button>
+            <Button onClick={handleEdit} variant="outline-secondary" size="sm" type="submit">Edit Reply</Button>
             </>
             :
             null

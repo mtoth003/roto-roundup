@@ -1,5 +1,8 @@
 import {useState} from 'react'
 import {useNavigate} from 'react-router'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
 
 function PostForm() {
   const [posts, setPosts] = useState([])
@@ -25,7 +28,7 @@ function PostForm() {
       body: JSON.stringify(postFormData),
     };
 
-    fetch("api/forum_posts", configObj).then((res) => {
+    fetch("/api/forum_posts", configObj).then((res) => {
       if(res.ok){
         res.json().then((post) => {
           setPosts([...posts, post])
@@ -44,17 +47,20 @@ function PostForm() {
       like_count: 0,
       dislike_count: 0,
     })
-    console.log(postFormData)
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='title'>Title</label><br></br>
-        <input type="text" id="title"  onChange={(e) => handleChange(e)} placeholder='Add a title' />
-        <input type="text" id="content"  onChange={(e) => handleChange(e)} placeholder='Enter your message'/>
-        <input type="submit" value="Submit Post"/>
-      </form>
-    </div>
+    <Container style={{padding: "20px", border: '3px solid #0000CD', borderRadius: "5px", marginTop: '50px'}}>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className='mb-3' controlId="title" style={{fontWeight: "bold", fontSize: "30px"}}>
+          <Form.Label>Subject</Form.Label>
+          <Form.Control type="text" onChange={(e) => handleChange(e)} placeholder='Enter your subject'/>
+        </Form.Group>
+        <Form.Group className='mb-3' controlId="content">
+          <Form.Control as="textarea" rows={10} onChange={(e) => handleChange(e)} placeholder='Enter your message'  />
+        </Form.Group>
+        <Button variant="success" type="submit">Submit</Button> <Button variant="outline-primary" href="/forum_posts">Back</Button>
+      </Form>
+  </Container>
   )
 }
 

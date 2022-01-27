@@ -2,6 +2,7 @@ import React from 'react'
 import ManageUsers from '../pages/ManageUsers'
 
 function ManageUsersContainer({users}) {
+  console.log(users)
   const displayUsers = users.map((user) => {
     return(
       <ManageUsers 
@@ -12,6 +13,7 @@ function ManageUsersContainer({users}) {
         username={user.username}
         email={user.email}
         users={users}
+        forumPosts={users.forumPosts}
       />
     )
   })

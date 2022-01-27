@@ -82,7 +82,7 @@ function WebsiteCard({id, siteName, siteUrl, subscriptionPageUrl, imageUrl, feat
 
   return (
     <Container>
-      <Card style={{ width: '60%' }}>
+      <Card style={{ width: '55%' }}>
         <Card.Img variant="top" style={{height: "350px", width: "100%"}} src={imageUrl} />
         <Card.Body>
           <Card.Title className="text-center">{siteName}</Card.Title>

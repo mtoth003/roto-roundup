@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container'
 function ReviewForm({reviewFormData, handleChange, handleSubmit}) {
 
   return (
-    <Container>
+    <Container >
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3' controlId="rating">
           <Form.Label>Rating</Form.Label>

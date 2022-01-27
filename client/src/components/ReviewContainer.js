@@ -25,7 +25,7 @@ function ReviewContainer({id, currentUser}) {
       body: JSON.stringify(reviewFormData),
     };
 
-    fetch("/reviews", configObj).then((r) => {
+    fetch("/api/reviews", configObj).then((r) => {
       if(r.ok){
         r.json().then((review) => {
           setReviews([...reviews, review])
@@ -49,7 +49,7 @@ function ReviewContainer({id, currentUser}) {
     }
 
     useEffect(() => {
-      fetch(`/reviews/websites/${id}`)
+      fetch(`/api/reviews/websites/${id}`)
       .then(r => r.json())
       .then(data => setReviews(data))
     }, [id])

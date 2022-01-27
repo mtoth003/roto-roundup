@@ -10,12 +10,12 @@ function ManageUsers({id, firstName, lastName, username, email, users}) {
   }
   
   const handleDelete = () => {
-    fetch(`/users/${id}`, {
+    fetch(`/api/users/${id}`, {
       method: "DELETE",
     }).then(r => {
       if(r.ok){
         handleDeleteUser(id)
-        window.location.reload(false)
+        window.location.reload()
       }
     })
   }

@@ -19,7 +19,7 @@ function LoginPage({setCurrentUser}) {
       body: JSON.stringify(loginData)
     }
     e.preventDefault();
-    fetch("/login", configObj).then((r) => {
+    fetch("api/login", configObj).then((r) => {
       if(r.ok){
         r.json().then((user) => {
           setCurrentUser(user)

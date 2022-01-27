@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  namespace :api do
     resources :comments
     resources :websites
     resources :forum_posts
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     get 'comments/forum_posts/:id', to: 'comments#forum_post_show'
     get '/comments/users/:id', to: 'comments#user_show' 
     get '/account', to: 'users#show'
-   
+  end
+ 
   get '*path', to: 'fallback#index', constraints: ->(req) { !req.xhr? && req.format.html? }
 end

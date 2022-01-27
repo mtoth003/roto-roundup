@@ -19,7 +19,7 @@ function CommentContainer({id, currentUser}) {
       body: JSON.stringify(commentFormData),
     };
 
-    fetch("/comments", configObj).then((r) => {
+    fetch("/api/comments", configObj).then((r) => {
       if(r.ok){
         r.json().then((comment) => {
         setComments([...comments, comment])
@@ -40,7 +40,7 @@ function CommentContainer({id, currentUser}) {
   }
 
   useEffect(() => {
-    fetch(`/comments/forum_posts/${id}`)
+    fetch(`/api/comments/forum_posts/${id}`)
     .then(r => r.json())
     .then(data => setComments(data))
   }, [id])

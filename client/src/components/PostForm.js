@@ -25,7 +25,7 @@ function PostForm() {
       body: JSON.stringify(postFormData),
     };
 
-    fetch("/forum_posts", configObj).then((res) => {
+    fetch("api/forum_posts", configObj).then((res) => {
       if(res.ok){
         res.json().then((post) => {
           setPosts([...posts, post])

@@ -19,7 +19,7 @@ function Home({websites, forumPosts, setCurrentUser, currentUser, users}) {
       <Header />
       <Routes>
         <Route path="/" element={<WebsitePage websites={websites} currentUser={currentUser} setSelectedWebsite={setSelectedWebsite}/>}/>
-        <Route path="websites/:id" element={selectedWebsite}/>
+        <Route path="/websites/:id" element={selectedWebsite}/>
         <Route path="/forum_posts" element={<ForumPage currentUser={currentUser} forumPosts={forumPosts} setSelectedPost={setSelectedPost}/>}/>
         <Route path="/forum_posts/:id" element={selectedPost}/>
         <Route path="/forum_posts/create" element={<PostForm/>}/>

@@ -46,7 +46,7 @@ function ForumContainer({forumPosts, title, content, likeCount, dislikeCount, cu
   }
 
   const handleDelete = () => {
-    fetch(`/forum_posts/${id}`, {
+    fetch(`/api/forum_posts/${id}`, {
       method: "DELETE"
     }).then(r => {
       if(r.ok){

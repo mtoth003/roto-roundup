@@ -22,7 +22,7 @@ function Comment({id, text, user, handleDeleteComment, comments, currentUser, se
       body: JSON.stringify(updateCommentFormData)
     };
 
-    fetch(`/comments/${id}`, configObj).then((r) => {
+    fetch(`/api/comments/${id}`, configObj).then((r) => {
       if(r.ok){
         r.json().then((comment) => {
           const updatedComments = comments.map((comm) => {
@@ -45,7 +45,7 @@ function Comment({id, text, user, handleDeleteComment, comments, currentUser, se
   }
 
   const handleDelete = () => {
-    fetch(`/comments/${id}`, {
+    fetch(`/api/comments/${id}`, {
       method: "DELETE"
     }).then(r => {
       if(r.ok){

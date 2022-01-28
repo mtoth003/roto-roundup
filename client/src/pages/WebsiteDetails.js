@@ -70,7 +70,7 @@ function WebsiteDetails({id, siteName, siteUrl, subscriptionPageUrl, imageUrl, f
       <a href={siteUrl} target="_blank">{siteName}</a> / <a href={subscriptionPageUrl} target="_blank">View Subscription Information</a>
       </div>
       <div className='details-sports'>
-        Sports Covered: {footballRender(football)} {baseballRender(baseball)} {basketballRender(basketball)} {hockeyRender(hockey)}
+        Content Provided: {footballRender(football)} {baseballRender(baseball)} {basketballRender(basketball)} {hockeyRender(hockey)}
       </div>
       <div className='details-features'>
         <p>{features}</p>

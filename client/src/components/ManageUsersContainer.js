@@ -13,13 +13,12 @@ function ManageUsersContainer({users}) {
         username={user.username}
         email={user.email}
         users={users}
-        forumPosts={users.forumPosts}
       />
     )
   })
   return (
-    <div>
-      <h1>Total Users: {users.length}</h1>
+    <div className='manage-user-container'>
+      <h1 style={{padding: "5px"}}>Total Users: {users.length}</h1>
       {displayUsers}
     </div>
   )

@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
 * {
   font-family: 'Nunito', sans-serif
 }
@@ -115,6 +117,30 @@
   padding: 5px
 }
 
+.details-site-name {
+  text-align: center;
+}
+
+.details-image {
+  text-align: center;
+}
+
+.details-icons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.details-links {
+  text-align: center;
+}
+
+.details-sports {
+  display: flex;
+  justify-content: space-around;
+  font-size: 25px;
+  font-weight: bold;
+}
+
 .num-input {
   width: 100%;
 }
@@ -147,4 +173,38 @@
 .reply-thread {
   border-top: 1px dashed #DCDCDC;
   padding-top: 5px;
+}
+
+.profile-container {
+  margin-top: 15px;
+  margin-left: 30%;
+  width: 40%;
+  text-align: center;
+  border: 3px solid rgb(125, 134, 179);
+  box-shadow: 4px 4px #ccc;
+  border-radius: 5px;
+}
+
+.stats-container {
+  margin-top: 15px;
+  margin-left: 30%;
+  width: 40%;
+  text-align: center;
+  border: 3px solid rgb(125, 134, 179);
+  box-shadow: 4px 4px #ccc;
+  border-radius: 5px;
+}
+
+.user-info {
+  border-top: 1px dashed #DCDCDC;
+  padding: 5px;
+}
+
+.manage-user-container {
+  background-color: #FFFAFA
+}
+
+.header > h1 {
+  font-size: 65px;
+  font-family: 'Bungee', cursive;
 }

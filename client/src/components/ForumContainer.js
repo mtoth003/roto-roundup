@@ -1,11 +1,13 @@
 import {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import ForumPost from '../pages/ForumPost'
 import Button from 'react-bootstrap/Button'
 
 function ForumContainer({forumPosts, title, content, likeCount, dislikeCount, currentUser, username, userId, setSelectedPost, id, createdAt}) {
   const [posts, setPosts] = useState([])
   const truncatedContent = (input) => input.length > 15 ? `${input.substring(0, 15)}...` : input
+
+  const navigate = useNavigate()
 
   const parseTime = (created_at) => {
     const date = new Date(created_at)
@@ -51,7 +53,8 @@ function ForumContainer({forumPosts, title, content, likeCount, dislikeCount, cu
     }).then(r => {
       if(r.ok){
         handleDeleteThread(id)
-        window.location.reload(false)
+        navigate("/forum_posts")
+        window.location.reload()
       }
     })
   }
@@ -75,7 +78,7 @@ function ForumContainer({forumPosts, title, content, likeCount, dislikeCount, cu
     <>
       <div className='post-container'>
         <Link className='forum-title' to={`/forum_posts/${id}`} onClick={buildForumPost}>
-          <h3 className='forum-container-title'>{title} {currentUser.admin === true ? <Button style={{float: "right"}} size="sm" variant='outline-danger' onClick={handleDelete}>Delete Thread</Button> :  null}</h3>
+          <h3 className='forum-container-title'>{title} </h3> {currentUser.admin === true ? <Button style={{float: "right"}} size="sm" variant='outline-danger' onClick={handleDelete}>Delete Thread</Button> :  null}
         </Link>
           <p>Created: {timeSince(parseTime(createdAt))} ago - {username} </p>
           <p>{truncatedContent(content)}</p>

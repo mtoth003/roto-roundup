@@ -15,7 +15,7 @@ function NavBar({setCurrentUser, currentUser}) {
     navigate('/')
 };
   return (
-    <Navbar bg="dark" variant='dark'>
+    <Navbar bg="dark" variant='dark' sticky="top">
       <Container>
         <Navbar.Brand href="/">RotoRoundup</Navbar.Brand>
         <Nav className="me-auto">
